@@ -12,6 +12,9 @@ void draw() {
   
   // background
   background(173, 216, 230);
+  
+  // start screen
+  // ...
 
   // draw bird
   drawBird();
@@ -25,22 +28,30 @@ void draw() {
     if (key == ' ') velocity = -2;
   }
   
-  // obstacles
+  // pipes
   for (int x = 0; x < 2; x++){
-    drawObstacle(pipeY[x], pipeX[x]);
+    drawPipe(pipeY[x], pipeX[x]);
     pipeX[x] += speed;
     if (pipeX[x] == -50) {
       pipeX[x] = 500;
     }
   }
+  
+  // collision
+  // ...
+  
+  
+  
 }
 
+// function to draw bird
 void drawBird() {
   fill(255,255,0);
   circle(250, birdY, 50);
 }
 
-void drawObstacle(float rectY, float rectX){
+// function to draw pipe
+void drawPipe(float rectY, float rectX){
   fill(0,200,0);
   rect(rectX, (rectY + 75), 50, 400);
   rect(rectX, (rectY - 75), 50, -400);
