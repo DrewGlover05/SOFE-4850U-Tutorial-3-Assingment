@@ -6,7 +6,7 @@ float velocity = 0;
 float[] pipeX = {500, 775};
 float[] pipeY = {random(75, 200), random(75, 200)};
 PImage bird;
-
+int count = 0;
 
 void setup() {
   size(500, 300);
@@ -73,9 +73,14 @@ void draw() {
   if ( birdY == 25 || birdY == 275){
       drawEnd();
   }
+  
+  // function for counter
+  if (pipeX[0] == 50 || pipeX[1] == 50) counter();
+  fill(0);
+  text("SCORE: " + count, 250, 100);
 }
 
-// function to draw bird
+// method to draw bird
 void drawBird() {
   bird = loadImage("bird.png");
   // center the image
@@ -83,14 +88,14 @@ void drawBird() {
   image(bird,birdX,birdY);
 }
 
-// function to draw pipe
+// method to draw pipe
 void drawPipe(float rectY, float rectX){
   fill(0,200,0);
   rect(rectX, (rectY + 75), 50, 400);
   rect(rectX, (rectY - 75), 50, -400);
 }
 
-//function to draw lose screen
+// method to draw lose screen
 void drawEnd(){
   // semi transparent rectangle to darken the screen
   fill(0,0,150);
@@ -111,11 +116,12 @@ void drawEnd(){
       pipeX[0] = 500;
       pipeX[1] = 775;
       speed = -1;
+      count = 0;
     }
   }
 }
 
-//function to draw the start screen
+// method to draw the start screen
 void drawStart(){
   // semi transparent rectangle to darken the screen
   fill(0,0,150);
@@ -132,4 +138,9 @@ void drawStart(){
   velocity = 0;
   speed = 0;
   gravity = 0;
+}
+
+// counter
+void counter(){
+  count++;
 }
