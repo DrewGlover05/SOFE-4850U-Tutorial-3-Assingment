@@ -25,6 +25,8 @@ void draw() {
   
   if (key == ' '){
     gameStarted = true;
+    gravity = 0.05;
+    speed = -1;
   }
   else {
    gameStarted = false;
@@ -64,14 +66,12 @@ void draw() {
             birdY + 25 > pipeY[x] + 75) {
     
           drawEnd();
-          exit();
         }
       }
     }
    //
   if ( birdY == 25 || birdY == 275){
       drawEnd();
-      exit();
   }
 }
 
@@ -99,7 +99,20 @@ void drawEnd(){
   fill(255);
   textSize(32);
   textAlign(CENTER,CENTER);
-  text("GAME OVER", 250, 150);
+  text("GAME OVER", 250, 130);
+  textSize(18);
+  text("PRESS ENTER TO START", 250, 180);
+  velocity = 0;
+  speed = 0;
+  // restart game
+  if (keyPressed){
+    if (key == ENTER){
+      birdY = 150;
+      pipeX[0] = 500;
+      pipeX[1] = 775;
+      speed = -1;
+    }
+  }
 }
 
 //function to draw the start screen
@@ -115,4 +128,8 @@ void drawStart(){
   textSize(16);
   textAlign(CENTER,CENTER);
   text("Press Space to Start",250,120);
+  
+  velocity = 0;
+  speed = 0;
+  gravity = 0;
 }
